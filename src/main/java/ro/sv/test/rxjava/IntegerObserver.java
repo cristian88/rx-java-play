@@ -4,19 +4,27 @@ import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
 
 public class IntegerObserver implements Observer<Integer> {
+
+	String observerName;
+
+	public IntegerObserver(String observerName) {
+		this.observerName = observerName;
+	}
+
 	public void onComplete() {
-		System.out.println("Subject completed work");
+		System.out.println(observerName + " completed work");
 	}
 
 	public void onError(Throwable arg0) {
-		System.out.println("Subject send error");
+		System.out.println(observerName + " chaught error: " + arg0.getMessage());
+		arg0.printStackTrace();
 	}
 
 	public void onNext(Integer arg0) {
-		System.out.println("Received " + arg0);
+		System.out.println(observerName + " received " + arg0);
 	}
 
 	public void onSubscribe(Disposable arg0) {
-		System.out.println("Just subscried to subject");
+		System.out.println(observerName + " just subscribed to subject");
 	}
 }
